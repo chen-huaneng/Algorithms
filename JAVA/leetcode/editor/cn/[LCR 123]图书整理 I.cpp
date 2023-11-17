@@ -1,4 +1,4 @@
-2023-11-15 23:20:13
+2023-11-15 23:38:51
 //书店店员有一张链表形式的书单，每个节点代表一本书，节点中的值表示书的编号。为更方便整理书架，店员需要将书单倒过来排列，就可以从最后一本书开始整理，逐一将书放
 //回到书架上。请倒序返回这个书单链表。 
 //
@@ -24,27 +24,28 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for singly-linked list.
- * public class ListNode {
+ * struct ListNode {
  *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
  */
 class Solution {
-    public int[] reverseBookList(ListNode head) {
-        var temp = new ArrayList<Integer>();
-        while (head != null) {
-            temp.add(head.val);
-            head = head.next;
+public:
+    vector<int> reverseBookList(ListNode* head) {
+        vector<int> stk;
+        while (head != nullptr) {
+            stk.push_back(head->val);
+            head = head->next;
         }
-        int size = temp.size();
-        int[] array = new int[size];
-        for (int i = 0; i < size; ++i) {
-            array[i] = temp.get(size - i - 1);
+        vector<int> res;
+        while (!stk.empty()) {
+            res.push_back(stk.back());
+            stk.pop_back();
         }
-        return array;
+        return res;
     }
-}
+};
 //leetcode submit region end(Prohibit modification and deletion)
