@@ -1,0 +1,27 @@
+class Solution {
+    public int[][] fileCombination(int target) {
+        // due to the continual integer, the integer in the list is not larger
+        // than the half of target, and the list length must > 2.
+        int max = (int) ((Math.sqrt(8 * target + 1) - 1) / (double) 2);
+        var array = new ArrayList<int[]>();
+
+        for (int i = max; i >= 2; --i){
+            int tmp = (2 * target - i * i + i);
+            
+            if (tmp % (2 * i) == 0) {
+                int[] ans = new int[i];
+                int x = tmp / (2 * i);
+
+                for (int k = 0; k < i; ++k) {
+                    ans[k] = x + k;
+                }
+                array.add(ans);
+            }
+        }
+
+        return array.toArray(new int[0][]);
+    }
+}
+
+//runtime:0 ms
+//memory:39.8 MB
