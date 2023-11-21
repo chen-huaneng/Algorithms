@@ -38,7 +38,48 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] spiralArray(int[][] array) {
+        if (array.length == 0) {
+            return new int[0];
+        }
 
+        int l = 0, r = array[0].length - 1, t = 0, b = array.length - 1, x = 0;
+        int[] res = new int[(r + 1) * (b + 1)];
+
+        while (true) {
+            for (int i = l; i <= r; ++i) {
+                res[x++] = array[t][i];
+            }
+
+            if (++t > b) {
+                break;
+            }
+
+            for (int i = t; i <= b; ++i) {
+                res[x++] = array[i][r];
+            }
+
+            if (--r < l) {
+                break;
+            }
+
+            for (int i = r; i >= l; --i) {
+                res[x++] = array[b][i];
+            }
+
+            if (--b < t) {
+                break;
+            }
+
+            for (int i = b; i >= t; --i) {
+                res[x++] = array[i][l];
+            }
+
+            if (++l > r) {
+                break;
+            }
+        }
+
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
