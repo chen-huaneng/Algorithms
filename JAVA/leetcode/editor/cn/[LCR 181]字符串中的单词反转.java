@@ -55,7 +55,23 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String reverseMessage(String message) {
+        String text = message.trim();
+        var res = new StringBuilder();
+        int i = text.length() - 1, j = i;
 
+        while (i >= 0) {
+            while (i >= 0 && text.charAt(i) != ' ') {
+                --i;
+            }
+            res.append(text.substring(i + 1, j + 1) + " ");
+            while (i >= 0 && text.charAt(i) == ' ') {
+                --i;
+                j = i;
+            }
+        }
+
+        return res.toString().trim();
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

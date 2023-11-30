@@ -1,6 +1,7 @@
 *.pdf
 Doomsday_rule/
 Books/
+Map_Generation/
 *.iml
 .idea/
 *.lcv
